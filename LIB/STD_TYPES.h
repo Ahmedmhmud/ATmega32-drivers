@@ -25,5 +25,8 @@ typedef volatile u_64        v_u_64;
 
 #define OK  1
 #define NOK 0
+#define NULL  ((void*)0)
+#define IDLE 1
+#define BUSY 0
 
 #endif /* STD_TYPES_H_ */
