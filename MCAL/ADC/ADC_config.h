@@ -22,7 +22,7 @@
         1- INT_ENABLE
         2- INT_DISABLE
 */
-#define INT_STATUS INT_ENABLE
+#define INT_STATUS INT_DISABLE
 
 /*
     Options:

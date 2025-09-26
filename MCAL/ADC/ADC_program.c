@@ -14,13 +14,13 @@
 #include "ADC_config.h"
 #include "ADC_private.h"
 
-static u16 * ADC_pu16AsynchConversionResult = NULL;
+static u_16 * ADC_pu16AsynchConversionResult = NULL;
 static void (* ADC_pvNotificationFunc)(void)= NULL;
-static u8 ADC_u8ISRState ;
-static u8 * ADC_pu8ChainChannel ;
-static u8 ADC_u8ChainSize ;
-static u8 ADC_u8Index ;
-static u8 ADC_u8State= IDLE ;
+static u_8 ADC_u8ISRState ;
+static u_8 * ADC_pu8ChainChannel ;
+static u_8 ADC_u8ChainSize ;
+static u_8 ADC_u8Index ;
+static u_8 ADC_u8State= IDLE ;
 
 void ADC_voidInit(void)
 {
@@ -106,7 +106,7 @@ u_8   ADC_u8GetResultSync ( u_8 Copy_u8Channel , u_16* Copy_pu16Result )
             {
                 timeOut++;
             }
-            if(timeOut == ADC_TIME)
+            if(timeOut == ADC_TIMEOUT)
             {
                 errorState = NOK;
             }
@@ -143,7 +143,7 @@ u_8   ADC_u8StartConversionAsynch( u_8 Copy_u8Channel , u_16* Copy_pu16Reading ,
         {
             ADC_u8State = BUSY;
             ADC_u8ISRState = SINGLE_CHANNEL_ASYNCH;
-            ADC_pu16AsynchConversionResult = Copy_pu16Result;
+            ADC_pu16AsynchConversionResult = Copy_pu16Reading;
             ADC_pvNotificationFunc = Copy_pvNotificationFunc;
             ADMUXR &= 0b11100000;
 			ADMUXR |= Copy_u8Channel;
@@ -205,9 +205,9 @@ void __vector_16 (void)
     if(ADC_u8ISRState == SINGLE_CHANNEL_ASYNCH)
     {
         #if ADC_ADJUSTMENT == RIGHT_ADJUSTMENT
-            *Copy_pu16Result = (ADC_LR | (ADC_HR<<8));
+            *ADC_pu16AsynchConversionResult = (ADC_LR | (ADC_HR<<8));
         #elif ADC_ADJUSTMENT == LEFT_ADJUSTMENT
-            *Copy_pu16Result = ADC_HR;
+            *ADC_pu16AsynchConversionResult = ADC_HR;
         #endif
 
         ADC_u8State = IDLE;

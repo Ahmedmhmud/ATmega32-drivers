@@ -50,14 +50,21 @@
 #define ADC_PRE_64               5
 #define ADC_PRE_128              6
 
+#define SINGLE_CHANNEL_ASYNCH    1
+#define CHAIN_CHANNEL_ASYNCH     0
+
+#define IDLE                     1
+#define BUSY                     0
+
+#define NULL                     0
+
 typedef struct 
 {
 	u_8*  Channel ;
 	u_16* Result  ;
 	u_8   Size    ;
 	void (*NotificationFunc)(void);
-
-} Chain_t ;
+}Chain_t ;
 
 void ADC_voidEnable           (void);
 void ADC_voidDisable          (void);
@@ -66,7 +73,7 @@ void ADC_voidInterruptDisable (void);
 
 void ADC_voidInit                ( void                                                                             );
 u_8   ADC_u8GetResultSync        ( u_8 Copy_u8Channel , u_16* Copy_pu16Result                                       );
-u_8   ADC_u8StartConversionAsynch(u_8 Copy_u8Channel , u_16* Copy_pu16Reading , void(*Copy_pvNotificationFunc)(void));
+u_8   ADC_u8StartConversionAsynch( u_8 Copy_u8Channel , u_16* Copy_pu16Reading , void(*Copy_pvNotificationFunc)(void) );
 u_8   ADC_u8StartChainAsynch     ( Chain_t * Copy_Chain                                                             );
 
 #endif

@@ -106,6 +106,7 @@ void TIMER_voidSetPWM               ( u_16 Copy_u16CompareValue   );
 void TIMER_voidWDTSleep             ( void                        );
 void TIMER_voidWDTEnable            ( void                        );
 void TIMER_voidWDTDisable           ( void                        );
+void TIMER_voidWDTRefresh           ( void                        );
 
 u_8  TIMER_u8SetCallBack            ( void (*Copy_pvCallBackFunc)(void) , u_8 Copy_u8VectorID) ;
 

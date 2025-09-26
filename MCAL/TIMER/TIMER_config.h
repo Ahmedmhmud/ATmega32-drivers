@@ -32,7 +32,7 @@
     7.TIMER0_EXT_CLK_FALLING
     8.TIMER0_EXT_CLK_RISING
 */
-#define TIMER0_PRESCALER   TIMER_PRESCALAR_8
+#define TIMER0_PRESCALER   TIMER_PRESCALER_8
 
 #if TIMER0_WAVEFORM_GENERATION_MODE == TIMER_NORMAL_MODE
 
@@ -99,7 +99,7 @@
 
         /*                       Timer 1                       */
 
-// Timer2 Waveform Generation Mode
+// Timer1 Waveform Generation Mode
 /*Options:
     1.TIMER1_NORMAL_MODE
 	2.TIMER1_PWM_8_BIT_MODE
@@ -117,7 +117,7 @@
 	14.TIMER1_FAST_PWM_ICR1_MODE
 	15.TIMER1_FAST_PWM_OCR1A_MODE
 */
-#define TIMER1_WAVEFORM_GENERATION_MODE    TIMER1_FAST_PWM_ICR1_MODE
+#define TIMER1_WAVEFORM_GENERATION_MODE    TIMER1_NORMAL_MODE
 
 // Timer1 clock selection
 /*Options:
@@ -130,15 +130,15 @@
     7.TIMER0_EXT_CLK_FALLING
     8.TIMER0_EXT_CLK_RISING
 */
-#define TIMER1_PRESCALER   TIMER_PRESCALAR_8
+#define TIMER1_PRESCALER   TIMER_PRESCALER_64
 
-#define TIMER2_PRELOAD_VAL                  0
+#define TIMER1_PRELOAD_VAL                  0
 
 #define TIMER1_CTCA_VAL						500
 
 #define TIMER1_CTCB_VAL						0
 
-#define TIMER1_ICR1_VAL						20000
+#define TIMER1_ICR1_VAL						0
 
 // Set Compare Match Output for OCR1A
 /*Choose between
@@ -149,7 +149,7 @@
     3.TIMER_OC_LOW				||  TIMER_CLR_ON_CTC_SET_ON_TOP
     4.TIMER_OC_HIGH				||  TIMER_SET_ON_CTC_CLR_ON_TOP
 */
-#define TIMER1_OCR1A_MODE					TIMER_CLR_ON_CTC_SET_ON_TOP
+#define TIMER1_OCR1A_MODE					TIMER_CLR_ON_CTC
 
 // Set Compare Match Output for OCR1A
 /*Choose between
@@ -161,7 +161,7 @@
     3.TIMER_OC_LOW				||   TIMER_CLR_ON_CTC_SET_ON_TOP
     4.TIMER_OC_HIGH				||   TIMER_SET_ON_CTC_CLR_ON_TOP
 */
-#define TIMER1_OCR1B_MODE					TIMER_CLR_ON_CTC_SET_ON_TOP
+#define TIMER1_OCR1B_MODE					TIMER_CLR_ON_CTC
 
 // Set Timer1 Input Capture Noise Canceler
 /*Options
@@ -215,7 +215,7 @@
     3. TIMER_CTC_MODE
     4. TIMER_FAST_PWM_MODE
 */
-#define TIMER2_WAVEFORM_GENERATION_MODE   TIMER_NORMAL_MODE
+#define TIMER2_WAVEFORM_GENERATION_MODE   TIMER_PWM_MODE
 
 // Timer2 clock selection
 /*Options:
@@ -228,7 +228,7 @@
     7.TIMER0_EXT_CLK_FALLING
     8.TIMER0_EXT_CLK_RISING
 */
-#define TIMER2_PRESCALER   TIMER_PRESCALAR_8
+#define TIMER2_PRESCALER   TIMER_NO_PRESCALING
 
 #if TIMER2_WAVEFORM_GENERATION_MODE == TIMER_NORMAL_MODE
 
@@ -309,6 +309,6 @@
 	7.WDT_PS_1_0_S
 	8.WDT_PS_2_1_S
 */
-#define WDT_PRESCALER    WDT_PS_1_0_S
+#define WDT_PRESCALER    WDT_PS_2_1_S
 
 #endif

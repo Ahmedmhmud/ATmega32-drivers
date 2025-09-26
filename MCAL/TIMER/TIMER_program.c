@@ -7,8 +7,8 @@
 *
 */
 
-#include "../LIB/STD_TYPES.h"
-#include "../LIB/BIT_MATH.h"
+#include "../../LIB/STD_TYPES.h"
+#include "../../LIB/BIT_MATH.h"
 
 #include "TIMER_interface.h"
 #include "TIMER_private.h"
@@ -20,8 +20,8 @@ void TIMER0_voidInit                ( void                 )
 {
 		#if TIMER0_WAVEFORM_GENERATION_MODE == TIMER_NORMAL_MODE
 
-			CLR_BIT(TCCR0 , WGM00) ;
-			CLR_BIT(TCCR0 , WGM01) ;
+			CLR_BIT(TCCR0 , WFG00) ;
+			CLR_BIT(TCCR0 , WFG01) ;
 
 			TCNT0 = TIMER0_PRELOAD_VAL ;
 
@@ -508,8 +508,8 @@ void TIMER2_voidInit                ( void                 )
 			#endif
 
 		#elif TIMER2_WAVEFORM_GENERATION_MODE == TIMER_PWM_MODE
-			SET_BIT(TCCR2 , WGM20) ;
-			CLR_BIT(TCCR2 , WGM21) ;
+			SET_BIT(TCCR2 , WFG20) ;
+			CLR_BIT(TCCR2 , WFG21) ;
 
 			#if TIMER2_CTC_PWM_MODE == TIMER_OC_DISCONNECTED
 					CLR_BIT(TCCR2 , COM20) ;
@@ -543,8 +543,8 @@ void TIMER2_voidInit                ( void                 )
 
 		#elif TIMER2_WAVEFORM_GENERATION_MODE == TIMER_FAST_PWM_MODE
 
-			SET_BIT(TCCR2 , WGM20) ;
-			SET_BIT(TCCR2 , WGM21) ;
+			SET_BIT(TCCR2 , WFG20) ;
+			SET_BIT(TCCR2 , WFG21) ;
 
 			#if TIMER2_CTC_PWM_MODE == TIMER_OC_DISCONNECTED
 					CLR_BIT(TCCR2 , COM20) ;
@@ -567,7 +567,7 @@ void TIMER2_voidInit                ( void                 )
 		#endif
 
 	TCCR2 &= 0b11111000 ;
-	TCCR2 |= TIMER2_PRESCALER ;
+	TCCR2 |= TIMER2_PRESCALER;
 }
 
 void TIMER2_voidSetPreload          ( u_8 Copy_u8Preload   )
@@ -651,6 +651,11 @@ void TIMER_voidWDTDisable           ( void                        )
 {
     WDTCR |= 0b00011000;
     CLR_BIT(WDTCR, WDE);
+}
+
+void TIMER_voidWDTRefresh(void)
+{
+    __asm__ __volatile__("wdr");
 }
 
 u_8  TIMER_u8SetCallBack            ( void (*Copy_pvCallBackFunc)(void) , u_8 Copy_u8VectorID)
