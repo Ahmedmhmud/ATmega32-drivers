@@ -85,6 +85,28 @@ Options for transmitter enable
 */
 #define USART_TRANSMITTER_ENABLE   ENABLE
 
+/*
+Options for USART mode
+1- ASYNCHRONOUS
+2- SYNCHRONOUS
+*/
+#define USART_MODE            ASYNCHRONOUS
 
+/*
+Options for data size
+1- DATA_SiZE_BIT_5
+2- DATA_SiZE_BIT_6
+3- DATA_SiZE_BIT_7
+4- DATA_SiZE_BIT_8
+5- DATA_SiZE_BIT_9
+*/
+#define USART_DATA_SIZE       DATA_SiZE_BIT_8
+
+/*
+Options for clock polarity
+1- XCK_RISING_TX_XCH_FALLING_RX
+2- XCK_FALLING_TX_XCH_RISING_RX
+*/
+#define USART_CLOCK_POLARITY  XCK_RISING_TX_XCH_FALLING_RX
 
 #endif
